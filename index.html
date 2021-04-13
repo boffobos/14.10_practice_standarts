@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Calculator</title>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header__logo"></div>
+      <h1 class="header__item">Калькулятор</h1>
+      <ul class="menu">
+        <li class="menu__item"><a href="#home">Домой</a></li>
+        <li class="menu__item"><a href="#feedback">Обратная связь</a></li>
+        <li class="menu__item"><a href="#about">О нас</a></li>
+        <li class="menu__item"><a href="#contacts">Контакты</a></li>
+      </ul>
+    </header>
+    <main>
+      <section class="calculator">
+        <div class="output">
+          <div class="output__flow"></div>
+          <div class="output__digits">0</div>
+        </div>
+        <div class="input">
+          <div class="operations">
+            <div class="operations__clr service">AC</div>
+            <div class="operations__plusmn unary">&plusmn;</div>
+            <div class="operations__ce unary">%</div>
+            <div class="operations__division binary">&divide;</div>
+            <div class="operations__multiply binary">&times;</div>
+            <div class="operations__sub binary">&minus;</div>
+            <div class="operations__sum binary">&plus;</div>
+            <div class="operations__result binary">&equals;</div>
+           <!-- NumPad -->
+            <div class="nums">
+              <div class="nums__9 num">9</div>
+              <div class="nums__8 num">8</div>
+              <div class="nums__7 num">7</div>
+              <div class="nums__6 num">6</div>
+              <div class="nums__5 num">5</div>
+              <div class="nums__4 num">4</div>
+              <div class="nums__3 num">3</div>
+              <div class="nums__2 num">2</div>
+              <div class="nums__1 num">1</div>
+              <div class="nums__0 num">0</div>
+              <div class="nums__comma num">,</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p>Copyright &copy; 2021</p>
+    </footer>
+  </div>
+
+  <script src="calc.js"></script>
+
+</body>
+</html>

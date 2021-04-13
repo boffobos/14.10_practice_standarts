@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  background: url('assets/Calculator.png') no-repeat center center/cover;
+  width: 100px;
+  height: 100px;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu__item {
+  list-style: none;
+  padding: 5px 10px;
+}
+
+.menu__item a {
+  text-decoration: none;
+  color: #000;
+}
+
+.calculator {
+  width: 250px;
+  padding: 10px;
+  margin: auto;
+  border: #000 1px solid;
+  border-radius: 5px;
+  background: #000;
+}
+
+.output {
+  width: 100%;
+  height: 100px;
+}
+
+.output__digits {
+  height: 70%;
+  width: 100%;
+  padding: 5px 15px 20px 15px;
+  text-align: end;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.0rem;
+  color: #fff;
+}
+
+.output__flow {
+  height: 30%;
+  width: 100%;
+  padding: 2px 7px;
+  text-align: end;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.0rem;
+  color: #fff;
+}
+
+.operations {
+  display: grid;
+  grid-template-areas: 'clr plusmn perc division'
+                       'nums nums nums mult'
+                       'nums nums nums sub' 
+                       'nums nums nums sum' 
+                       'nums nums nums result' ;
+  gap: .5rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.nums {
+  display: grid;
+  grid-template-areas: 'seven eight nine'
+                       'four five six'
+                       'one two three'
+                       'zero zero comma';
+  gap: .5rem;
+  align-items: center;
+  justify-items: center;
+  grid-area: nums;
+}
+
+
+.nums > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1.8;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgb(65, 65, 65);
+}
+
+.nums > .nums__0 {
+  justify-content: start;
+  padding-left: 18px;
+} 
+
+.num:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.binary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(233, 155, 10);
+}
+
+.binary:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.unary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(168, 168, 168);
+}
+.unary:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.service {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(168, 168, 168);
+}
+
+
+.service:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.coperations__clr {grid-area: clr;}
+.coperations__ce {grid-area: ce;}
+.coperations__plusmn {grid-area: plusmn;}
+.coperations__division {grid-area: division;}
+.coperations__multiply {grid-area: mult;}
+.coperations__sub {grid-area: sub;}
+.coperations__sum {grid-area: sum;}
+.coperations__result {grid-area: result;}
+
+.nums__9 {grid-area: nine;}
+.nums__8 {grid-area: eight;}
+.nums__7 {grid-area: seven;}
+.nums__6 {grid-area: six;}
+.nums__5 {grid-area: five;}
+.nums__4 {grid-area: four;}
+.nums__3 {grid-area: three;}
+.nums__2 {grid-area: two;}
+.nums__1 {grid-area: one;}
+.nums__0 {
+  grid-area: zero;
+  width: 100%;
+  border-radius: 25%/50%;
+}
+.nums__comma {grid-area: comma;}
