@@ -32,6 +32,18 @@ const btnTranslate = {
     "operations__sub": "sub",
     "operations__multiply": "mult",
     "operations__division": "div",
+    "sum": function(opr) {
+        displayVar = firstOperand + displayVar;
+    },
+    "sub": function(opr) {
+        displayVar = firstOperand - displayVar;
+    },
+    "mult": function(opr) {
+        displayVar = firstOperand * displayVar;
+    },
+    "div": function(opr) {
+        displayVar = firstOperand / displayVar;
+    },
 
 };
 const operationToFlow = {
@@ -78,19 +90,9 @@ function binaryOperator(operation) {
         inputWindow.textContent = displayVar;
         firstOperand = displayVar;
     }
-    if (operation === 'sum') {
-        displayVar = firstOperand + displayVar;
-        output();
-    } else if (operation === 'sub') {
-        displayVar = firstOperand - displayVar;
-        output();
-    } else if (operation === 'mult') {
-        displayVar = firstOperand * displayVar;
-        output();
-    } else if (operation === 'div') {
-        displayVar = firstOperand / displayVar;
-        output();
-    }
+    let oper = btnTranslate[operation];
+    oper();
+    output();
 }
 
 //print out previous input and operation to separate calc field
@@ -106,7 +108,7 @@ function flowOutput(kId, kClass, lastButtonClass) {
     //output unary operations
     else if ( kClass.includes('unary') ) {
         if(kId === 'operations__percent') flowOutputWindow.textContent += `${btnTranslate[kId](displayVar)} `;
-        else if(kId === 'operations__plusmn') flowOutputWindow.textContent += `(${btnTranslate[kId](displayVar)}) `;
+        else if(kId === 'operations__plusmn' && lastButtonClass !== 'unary') flowOutputWindow.textContent += `(${btnTranslate[kId](displayVar)}) `;
     } else if (kId === "operations__clr") {
         flowOutputWindow.textContent = '';
     }
