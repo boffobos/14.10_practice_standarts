@@ -114,8 +114,7 @@ function flowOutput(kId, kClass, lastButtonClass) {
     }
 }
 
-function calcLogic(kId, kClass)
-{
+function calcLogic(kId, kClass) {
     if(kId === 'operations__clr') {
         firstOperand = null;
         operation = null;
@@ -139,51 +138,32 @@ function calcLogic(kId, kClass)
         if(kClass.includes('nums')) {
             if(lastButtonClass === 'nums') {
                 keyOutput(kId);
-            }
-            else if(lastButtonClass === 'binary' || lastButtonClass === 'unary' || lastButtonClass === 'service')
-            {
+            } else if(lastButtonClass === 'binary' || lastButtonClass === 'unary' || lastButtonClass === 'service') {
                 displayVar = '';
                 inputWindow.textContent = displayVar;
                 keyOutput(kId);
             }
             // here can be else for some use if add new key classes over nums binary unary
-        }
-        else if(kClass.includes('binary') || kClass.includes('unary') )
-        {
-            if(kClass.includes('unary'))
-            {
-                if(typeof displayVar === 'number')
-                {
-                    if(lastButtonClass === 'nums' || lastButtonId === 'operations__result' || lastButtonClass === 'unary')
-                    {
+        } else if(kClass.includes('binary') || kClass.includes('unary') ) {
+            if(kClass.includes('unary')) {
+                if(typeof displayVar === 'number') {
+                    if(lastButtonClass === 'nums' || lastButtonId === 'operations__result' || lastButtonClass === 'unary') {
+                        unaryOperator(kId);
+                    } else if(lastButtonClass === 'binary') {
                         unaryOperator(kId);
                     }
-                    else if(lastButtonClass === 'binary')
-                    {
-                        unaryOperator(kId);
-                    }
-                }
-                else
-                {
+                } else {
                     inputWindow.textContent = 'Error';
                 }
-            }
-            else
-            {
-                if(lastButtonClass === 'nums')
-                {
+            } else {
+                if(lastButtonClass === 'nums') {
                     binaryOperator(operation);
                     operation = btnTranslate[kId];
-                }
-                else if(lastButtonClass === 'binary' || lastButtonClass === 'unary')
-                {
-                    if(lastButtonClass === 'unary')
-                    {
+                } else if(lastButtonClass === 'binary' || lastButtonClass === 'unary') {
+                    if(lastButtonClass === 'unary') {
                         binaryOperator(operation);
                         operation = btnTranslate[kId];
-                    }
-                    else
-                    {
+                    } else {
                         operation = btnTranslate[kId];
                     }
                 }
@@ -191,44 +171,30 @@ function calcLogic(kId, kClass)
         }
     } else {
         //when first operand === null
-        if (inputWindow.textContent === '0')
-        {
-            if (kClass.includes('nums'))
-            {
+        if (inputWindow.textContent === '0') {
+            if (kClass.includes('nums')) {
                 displayVar = '';
                 inputWindow.textContent = displayVar;
                 keyOutput(kId);
             }
-        }
-        else if (kClass.includes('nums'))
-        {       
-            if (lastButtonClass === 'unary')
-            {   
+        } else if (kClass.includes('nums')) {       
+            if (lastButtonClass === 'unary') {   
                 displayVar = '';
                 inputWindow.textContent = displayVar;
                 keyOutput(kId);
-            }
-            else
-            {
+            } else {
                 keyOutput(kId); 
             }
-                
-        }
-        else if(kClass.includes('unary') || kClass.includes('binary'))
-        {
-            if(kClass.includes('unary'))
-            {
+        } else if(kClass.includes('unary') || kClass.includes('binary')) {
+            if(kClass.includes('unary')) {
                 unaryOperator(kId);
-            }
-            else
-            {
+            } else {
                 firstOperand = Number(displayVar);
                 operation = btnTranslate[kId];
             }
         }
-        
     }
-        lastButtonClass = kClass;
+    lastButtonClass = kClass;
 }
 
 checkPressedButtons();
