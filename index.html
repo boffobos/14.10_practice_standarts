@@ -14,14 +14,16 @@
 <body>
   <div class="container">
     <header class="header">
-      <div class="header__logo"></div>
+      <div class="header__logo"><a href="#home"></a></div>
       <h1 class="header__item">Калькулятор</h1>
-      <ul class="menu">
-        <li class="menu__item"><a href="#home">Домой</a></li>
-        <li class="menu__item"><a href="#feedback">Обратная связь</a></li>
-        <li class="menu__item"><a href="#about">О нас</a></li>
-        <li class="menu__item"><a href="#contacts">Контакты</a></li>
-      </ul>
+      <nav>  
+        <ul class="menu">
+          <li class="menu__item"><a href="#home">Домой</a></li>
+          <li class="menu__item"><a href="#feedback">Обратная связь</a></li>
+          <li class="menu__item"><a href="#about">О нас</a></li>
+          <li class="menu__item"><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
     </header>
     <main>
       <section class="calculator">
@@ -31,27 +33,27 @@
         </div>
         <div class="input">
           <div class="operations">
-            <div class="operations__clr service">AC</div>
-            <div class="operations__plusmn unary">&plusmn;</div>
-            <div class="operations__ce unary">%</div>
-            <div class="operations__division binary">&divide;</div>
-            <div class="operations__multiply binary">&times;</div>
-            <div class="operations__sub binary">&minus;</div>
-            <div class="operations__sum binary">&plus;</div>
-            <div class="operations__result binary">&equals;</div>
+            <button class="operations__clr service">AC</button>
+            <button class="operations__plusmn unary">&plusmn;</button>
+            <button class="operations__percent unary">%</button>
+            <button class="operations__division binary">&divide;</button>
+            <button class="operations__multiply binary">&times;</button>
+            <button class="operations__sub binary">&minus;</button>
+            <button class="operations__sum binary">&plus;</button>
+            <button class="operations__result binary">&equals;</button>
            <!-- NumPad -->
-            <div class="nums">
-              <div class="nums__9 num">9</div>
-              <div class="nums__8 num">8</div>
-              <div class="nums__7 num">7</div>
-              <div class="nums__6 num">6</div>
-              <div class="nums__5 num">5</div>
-              <div class="nums__4 num">4</div>
-              <div class="nums__3 num">3</div>
-              <div class="nums__2 num">2</div>
-              <div class="nums__1 num">1</div>
-              <div class="nums__0 num">0</div>
-              <div class="nums__comma num">,</div>
+            <div class="btn">
+              <button class="btn__9 nums">9</button>
+              <button class="btn__8 nums">8</button>
+              <button class="btn__7 nums">7</button>
+              <button class="btn__6 nums">6</button>
+              <button class="btn__5 nums">5</button>
+              <button class="btn__4 nums">4</button>
+              <button class="btn__3 nums">3</button>
+              <button class="btn__2 nums">2</button>
+              <button class="btn__1 nums">1</button>
+              <button class="btn__0 nums">0</button>
+              <button class="btn__comma nums">,</button>
             </div>
           </div>
         </div>
@@ -62,7 +64,7 @@
     </footer>
   </div>
 
-  <script src="calc.js"></script>
+  <script src="script_2.js"></script> 
 
 </body>
 </html>
