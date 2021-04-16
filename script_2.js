@@ -63,57 +63,40 @@ function keyOutput(kId) {
 }
 
 function unaryOperator(kId) {
-    //YAGNI redused function not from tech specs
+    //YAGNI redused function not from task
     //KISS made function easer;
     displayVar = Number(displayVar);
-    operation = btnTranslate[kId];
-    displayVar = inputWindow.textContent = operation(displayVar);
+    let oper = btnTranslate[kId];
+    displayVar = inputWindow.textContent = oper(displayVar);
 }
 
 //make operation between operand in variable and display content. Input should be variable operation
-function binaryOperator(kId) {
+function binaryOperator(operation) {
     displayVar = Number(displayVar);
-    if (kId === 'sum') {
+    function output() {
+        //DRY
+        inputWindow.textContent = displayVar;
+        firstOperand = displayVar;
+    }
+    if (operation === 'sum') {
         displayVar = firstOperand + displayVar;
-        inputWindow.textContent = displayVar;
-        firstOperand = displayVar;
-    } else if (kId === 'sub') {
+        output();
+    } else if (operation === 'sub') {
         displayVar = firstOperand - displayVar;
-        inputWindow.textContent = displayVar;
-        firstOperand = displayVar;
-    } else if (kId === 'mult') {
+        output();
+    } else if (operation === 'mult') {
         displayVar = firstOperand * displayVar;
-        inputWindow.textContent = displayVar;
-        firstOperand = displayVar;
-    } else if (kId === 'div') {
+        output();
+    } else if (operation === 'div') {
         displayVar = firstOperand / displayVar;
-        inputWindow.textContent = displayVar;
-        firstOperand = displayVar;
+        output();
     }
 }
 
-//Handle key input and write meaning of operation to variable operation
-
-function operationExplanation(kId)
-{   let oper;
-    if (kId === 'btn_sum') {
-        oper = '+';
-    } else if (kId === 'btn_sub') {
-        oper = '-';
-    }
-    else if (kId === 'btn_multiply') {
-        oper = '*';
-    }
-    else if (kId === 'btn_division') {
-        oper = '/';
-    }
-    return oper;
-}
-
-//print out previous input and operatin to separeate calc field
+//print out previous input and operation to separate calc field
 function flowOutput(kId, kClass, lastButtonClass) {
-    let oper = operationExplanation(kId);
-    if (kId === 'btn_result') {
+    let oper = operationToFlow[kId];
+    if (kId === 'operations__result') {
         flowOutputWindow.textContent = '';
     } else if ( kClass.includes('binary') && lastButtonClass !== 'unary' ) {
         flowOutputWindow.textContent += `${displayVar} ${oper} `;
@@ -122,100 +105,16 @@ function flowOutput(kId, kClass, lastButtonClass) {
     }
     //output unary operations
     else if ( kClass.includes('unary') ) {
-        if (kId === 'btn_sqrt') {
-            flowOutputWindow.textContent += `sqrt(${displayVar}) `;
-        } else if(kId === 'btn_square') {
-            flowOutputWindow.textContent += `${displayVar}^2 `;
-        } else if(kId === 'btn_reciprocal') {
-            flowOutputWindow.textContent += `1/${displayVar} `;
-        } else if(kId === 'btn_lg') {
-            flowOutputWindow.textContent += `lg(${displayVar}) `;
-        } else if(kId === 'btn_cbrt') {
-            flowOutputWindow.textContent += `cbrt(${displayVar}) `;
-        } else if(kId === 'btn_sin') {
-            flowOutputWindow.textContent += `sin(${displayVar}) `;
-        } else if(kId === 'btn_cos') {
-            flowOutputWindow.textContent += `cos(${displayVar}) `;
-        } else if(kId === 'btn_ln') {
-            flowOutputWindow.textContent += `ln(${displayVar}) `;
-        }
-    } else if (kId === "btn_clr") {
+        if(kId === 'operations__percent') flowOutputWindow.textContent += `${btnTranslate[kId](displayVar)} `;
+        else if(kId === 'operations__plusmn') flowOutputWindow.textContent += `(${btnTranslate[kId](displayVar)}) `;
+    } else if (kId === "operations__clr") {
         flowOutputWindow.textContent = '';
     }
 }
 
-//handle keyboard input in addition to mouse input from page
-function keyBoardHandler(keyboardKey) {
-        // operation keys 
-        if (keyboardKey === '+') {
-            keyId = 'btn_sum';
-            keyClass = 'binary';
-        } else if (keyboardKey === '-') {
-            keyId = 'btn_sub';
-            keyClass = 'binary';
-        } else if (keyboardKey === '*') {
-            keyId = 'btn_multiply';
-            keyClass = 'binary';
-        } else if (keyboardKey === '/') {
-            keyId = 'btn_division';
-            keyClass = 'binary';
-        } else if (keyboardKey === 'Enter') {
-            keyId = 'btn_result';
-            keyClass = 'binary';
-        }
-        //number keys
-        else if (keyboardKey === '0') {
-            keyId = 'btn_0';
-            keyClass = 'nums';
-        } else if (keyboardKey === '1') {
-            keyId = 'btn_1';
-            keyClass = 'nums';
-        } else if (keyboardKey === '2') {
-            keyId = 'btn_2';
-            keyClass = 'nums';
-        } else if (keyboardKey === '3') {
-            keyId = 'btn_3';
-            keyClass = 'nums';
-        } else if (keyboardKey === '4') {
-            keyId = 'btn_4';
-            keyClass = 'nums';
-        } else if (keyboardKey === '5') {
-            keyId = 'btn_5';
-            keyClass = 'nums';
-        } else if (keyboardKey === '6') {
-            keyId = 'btn_6';
-            keyClass = 'nums';
-        } else if (keyboardKey === '7') {
-            keyId = 'btn_7';
-            keyClass = 'nums';
-        } else if (keyboardKey === '8') {
-            keyId = 'btn_8';
-            keyClass = 'nums';
-        } else if (keyboardKey === '9') {
-            keyId = 'btn_9';
-            keyClass = 'nums';
-        } else if (keyboardKey === '.') {
-            keyId = 'btn_comma';
-            keyClass = 'nums';
-        }
-        //service keys
-        else if (keyboardKey === 'Escape') {
-            keyId = 'btn_clr';
-            keyClass = '';
-        } else if (keyboardKey === 'Delete') {
-            keyId = 'btn_clr';
-            keyClass = 'service';
-        } else if (keyboardKey === 'Enter') {   
-            keyId = 'btn_result';
-            keyClass = 'binary';
-        }
-
-        calcLogic(keyId, keyClass);
-}
-
 function calcLogic(kId, kClass)
 {
-    if(kId === 'operations_clr') {
+    if(kId === 'operations__clr') {
         firstOperand = null;
         operation = null;
         lastButtonClass = null;
@@ -253,7 +152,7 @@ function calcLogic(kId, kClass)
             {
                 if(typeof displayVar === 'number')
                 {
-                    if(lastButtonClass === 'nums' || lastButtonId === 'btn_result' || lastButtonClass === 'unary')
+                    if(lastButtonClass === 'nums' || lastButtonId === 'operations__result' || lastButtonClass === 'unary')
                     {
                         unaryOperator(kId);
                     }
@@ -327,29 +226,7 @@ function calcLogic(kId, kClass)
         }
         
     }
-   
-    if (kClass.includes('nums'))
-    {
-        lastButtonClass = 'nums';
-    }
-    else if (kClass.includes('unary'))
-    {
-        lastButtonClass = 'unary';
-    }
-    else if (kClass.includes('binary'))
-    {
-        lastButtonClass = 'binary';
-    }
-    else if (kClass.includes('service'))
-    {
-        lastButtonClass = 'service';
-    }
-    lastButtonId = kId;
-   
+        lastButtonClass = kClass;
 }
-
-
-
-
 
 checkPressedButtons();
