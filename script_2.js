@@ -21,70 +21,57 @@ const btnTranslate = {
     "btn__8": "8",
     "btn__9": "9",
     "btn__comma": ".",
+    "operations__plusmn": function(opr) {
+        return -opr;
+    },
+    "operations__percent": function(opr) {
+        if (firstOperand === null) return opr / 100;
+        else return firstOperand / 100 * opr;
+    },
+    "operations__sum": "sum",
+    "operations__sub": "sub",
+    "operations__multiply": "mult",
+    "operations__division": "div",
+
+};
+const operationToFlow = {
+    "operations__sum": "+",
+    "operations__sub": "-",
+    "operations__multiply": "*",
+    "operations__division": "/",
 };
 
 function checkPressedButtons() {
     const buttons = document.querySelectorAll('button');
     const buttonsArr = Array.from(buttons);
     buttonsArr.forEach(elem => elem.addEventListener('click', (event) => {
-           console.log(event);
            let keyId = event.target.classList[0];
            let keyClass = event.target.classList[1];
            calcLogic(keyId, keyClass);
         }));
 }
 
-    
-
 //output digits to the calc screen
 function keyOutput(kId) {
     //KISS - made function simpler than before
-    let num = btnTranslate[kId];   
-    if(dotFlag === true && Number.isInteger(displayVar)) displayVar += `.${num}`;
-    else if (num !== '.') displayVar += `${num}`;
+    let num = btnTranslate[kId];
+    let isInt = Number.isInteger;  
+    if(dotFlag === true && isInt(displayVar)) displayVar += `.${num}`;
+    else displayVar += `${num}`;
     displayVar = Number(displayVar);
     inputWindow.textContent = displayVar;
-    if (num === '.') dotFlag = true;
 }
 
-function unaryOperator(kId) 
-{   displayVar = Number(displayVar);
-    if(kId === 'btn_plusmn') {
-        displayVar = - displayVar;
-        inputWindow.textContent = displayVar;
-    } else if(kId === 'btn_sqrt') {
-        displayVar = Math.sqrt(displayVar);
-        inputWindow.textContent = displayVar;
-    } else if(kId === 'btn_square') {
-        displayVar = displayVar ** 2;
-        inputWindow.textContent = displayVar;
-    } else if(kId === 'btn_reciprocal') {
-        displayVar = 1 / displayVar;
-        inputWindow.textContent = displayVar;
-    } else if(kId === 'btn_lg') {
-        displayVar = Math.log10(displayVar);
-        inputWindow.textContent = displayVar;
-    } else if(kId === 'btn_cbrt') {
-        displayVar = Math.cbrt(displayVar);
-        inputWindow.textContent = displayVar;
-    } else if(kId === 'btn_sin') {
-        displayVar = Math.sin(displayVar * Math.PI / 180);
-        inputWindow.textContent = displayVar;
-    } else if(kId === 'btn_cos') {
-        displayVar = Math.cos(displayVar * Math.PI / 180);
-        inputWindow.textContent = displayVar;
-    } else if(kId === 'btn_ln') {
-        displayVar = Math.log(displayVar);
-        inputWindow.textContent = displayVar;
-    }
-    
-
-
+function unaryOperator(kId) {
+    //YAGNI redused function not from tech specs
+    //KISS made function easer;
+    displayVar = Number(displayVar);
+    operation = btnTranslate[kId];
+    displayVar = inputWindow.textContent = operation(displayVar);
 }
 
 //make operation between operand in variable and display content. Input should be variable operation
-function binaryOperator(kId)
-{
+function binaryOperator(kId) {
     displayVar = Number(displayVar);
     if (kId === 'sum') {
         displayVar = firstOperand + displayVar;
@@ -103,22 +90,10 @@ function binaryOperator(kId)
         inputWindow.textContent = displayVar;
         firstOperand = displayVar;
     }
-    
 }
 
 //Handle key input and write meaning of operation to variable operation
-function operationDeclaration(kId)
-{   
-    if(kId === 'btn_sum') {
-        operation = 'sum';
-    } else if(kId === 'btn_sub') {
-        operation = 'sub';
-    } else if(kId === 'btn_multiply') {
-        operation = 'mult';
-    } else if(kId === 'btn_division') {
-        operation = 'div';
-    }
-}
+
 function operationExplanation(kId)
 {   let oper;
     if (kId === 'btn_sum') {
@@ -136,8 +111,7 @@ function operationExplanation(kId)
 }
 
 //print out previous input and operatin to separeate calc field
-function flowOutput(kId, kClass, lastButtonClass)
-{
+function flowOutput(kId, kClass, lastButtonClass) {
     let oper = operationExplanation(kId);
     if (kId === 'btn_result') {
         flowOutputWindow.textContent = '';
@@ -255,6 +229,8 @@ function calcLogic(kId, kClass)
         displayVar = '';
         dotFlag = false;
     }
+
+    if(kId === 'btn__comma') dotFlag = true;
     
     flowOutput(kId, kClass, lastButtonClass);
 
@@ -296,18 +272,18 @@ function calcLogic(kId, kClass)
                 if(lastButtonClass === 'nums')
                 {
                     binaryOperator(operation);
-                    operationDeclaration(kId);
+                    operation = btnTranslate[kId];
                 }
                 else if(lastButtonClass === 'binary' || lastButtonClass === 'unary')
                 {
                     if(lastButtonClass === 'unary')
                     {
                         binaryOperator(operation);
-                        operationDeclaration(kId);
+                        operation = btnTranslate[kId];
                     }
                     else
                     {
-                        operationDeclaration(kId);
+                        operation = btnTranslate[kId];
                     }
                 }
             }
@@ -346,7 +322,7 @@ function calcLogic(kId, kClass)
             else
             {
                 firstOperand = Number(displayVar);
-                operationDeclaration(kId);
+                operation = btnTranslate[kId];
             }
         }
         
