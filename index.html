@@ -16,13 +16,20 @@
     <header class="header">
       <div class="header__logo"><a href="#home"></a></div>
       <h1 class="header__item">Калькулятор</h1>
-      <nav>  
-        <ul class="menu">
-          <li class="menu__item"><a href="#home">Домой</a></li>
-          <li class="menu__item"><a href="#feedback">Обратная связь</a></li>
-          <li class="menu__item"><a href="#about">О нас</a></li>
-          <li class="menu__item"><a href="#contacts">Контакты</a></li>
-        </ul>
+      <nav>
+        <div class="menu-wrap">
+          <input type="checkbox" class="toggler">
+          <div class="hamburger"><div></div></div>
+          <ul class="menu">
+            <div>
+              <div><li class="menu__item"><a href="#home">Домой</a></li>
+                <li class="menu__item"><a href="#feedback">Обратная связь</a></li>
+                <li class="menu__item"><a href="#about">О нас</a></li>
+                <li class="menu__item"><a href="#contacts">Контакты</a></li>
+              </div>
+            </div>
+          </ul>
+        </div>   
       </nav>
     </header>
     <main>
@@ -60,7 +67,7 @@
       </div>
     </main>
     <footer class="footer">
-      <p>Copyright &copy; 2021</p>
+      <p><a href="https://www.mit.edu/~amini/LICENSE.md">MIT</a> license , 2021</p>
     </footer>
   </div>
 
